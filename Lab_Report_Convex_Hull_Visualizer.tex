@@ -1,0 +1,403 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Prevent word breaking - move whole words to next line
+\usepackage[none]{hyphenat}
+\sloppy
+
+% Prevent orphaned section headings
+\usepackage{needspace}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\needspace{4\baselineskip}\normalfont\Large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\needspace{3\baselineskip}\normalfont\large\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\needspace{2\baselineskip}\normalfont\normalsize\bfseries}}
+\makeatother
+
+% Additional penalties for better page breaks
+\widowpenalty=10000
+\clubpenalty=10000
+
+% Code listing settings
+\lstset{
+    backgroundcolor=\color{gray!10},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    commentstyle=\color{green!60!black},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{gray},
+    showstringspaces=false,
+    stringstyle=\color{orange},
+    tabsize=2,
+    frame=single
+}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Convex Hull Algorithms Simulator}
+\rhead{Lab Report}
+\cfoot{\thepage}
+
+\title{\textbf{Convex Hull Algorithms Simulator} \\ \large{Lab Report - Final Project}}
+\author{Muhommod Toufik Islam \\ Reg. No: 2021331538 \\ Software Development II Course \\ 2nd year, 2nd Semester}
+\date{June 23, 2025}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+% Compress table of contents spacing aggressively
+\setlength{\parskip}{0pt}
+\renewcommand{\baselinestretch}{0.9}
+\setlength{\itemsep}{0pt}
+{
+\small
+\tableofcontents
+}
+\renewcommand{\baselinestretch}{1.0}
+\setlength{\parskip}{6pt}
+\newpage
+
+\section{Introduction}
+
+Convex hull algorithms are fundamental components in computational geometry with extensive applications across various domains including computer graphics, pattern recognition, image processing, and geographic information systems (GIS). A convex hull is defined as the smallest convex polygon that encloses all points in a given set, conceptually similar to stretching a rubber band around the outermost points.
+
+Despite their critical importance in computational geometry, understanding and visualizing these algorithms can be challenging for students and professionals due to their abstract mathematical nature and complex geometric operations. Traditional learning methods through textbooks and static diagrams often fail to provide the intuitive understanding necessary to grasp the step-by-step execution of these algorithms.
+
+This project addresses this educational gap by developing an interactive Convex Hull Algorithm Visualizer that provides a comprehensive platform for understanding, visualizing, and comparing multiple convex hull algorithms. The visualizer serves as both an educational tool for students learning computational geometry and a practical utility for professionals working with geometric algorithms.
+
+The significance of this project lies in its ability to transform abstract algorithmic concepts into tangible, interactive experiences. By providing real-time visualization of algorithm execution, step-by-step animation, and performance comparison capabilities, this tool bridges the gap between theoretical knowledge and practical understanding.
+
+\section{Objectives}
+
+The primary objectives of this project are structured around creating a comprehensive educational and analytical tool for convex hull algorithms:
+
+\subsection{Primary Objectives}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Algorithm Implementation}: Implement and optimize multiple convex hull algorithms including Graham's Scan, Jarvis March (Gift Wrapping), Monotone Chain, QuickHull, and Chan's Algorithm
+    \item \textbf{Interactive Visualization}: Develop a dynamic, user-friendly interface that demonstrates step-by-step algorithm execution with animated graphics
+    \item \textbf{Performance Analysis}: Provide real-time comparison of algorithm performance, including time complexity analysis and comparison counting
+    \item \textbf{Educational Enhancement}: Create an accessible learning platform that aids in understanding computational geometry concepts
+\end{itemize}
+
+\subsection{Secondary Objectives}
+\begin{itemize}[leftmargin=0.5in]
+    \item Enable custom data point input and random point generation capabilities
+    \item Implement zoom and pan functionality for detailed visualization
+    \item Provide algorithm selection and configuration options
+    \item Create comprehensive documentation and user guides
+    \item Ensure cross-platform compatibility through Java implementation
+\end{itemize}
+
+\subsection{Learning Outcomes}
+\begin{itemize}[leftmargin=0.5in]
+    \item Deep understanding of convex hull algorithm mechanics and complexity analysis
+    \item Practical experience in Java Swing GUI development and event-driven programming
+    \item Knowledge of computational geometry principles and geometric algorithm optimization
+    \item Experience in software architecture design and modular programming practices
+\end{itemize}
+
+\section{Functionality \& Features}
+
+The Convex Hull Algorithm Simulator provides a comprehensive set of features designed to enhance learning and analysis of convex hull algorithms:
+
+\subsection{Core Algorithms Implemented}
+\begin{enumerate}[leftmargin=0.5in]
+    \item \textbf{Graham's Scan}: O(n log n) time complexity algorithm using polar angle sorting
+    \item \textbf{Jarvis March (Gift Wrapping)}: O(nh) time complexity where h is the number of hull points
+    \item \textbf{Monotone Chain}: O(n log n) algorithm processing points in lexicographic order
+    \item \textbf{QuickHull}: Divide-and-conquer approach with average O(n log n) complexity
+    \item \textbf{Chan's Algorithm}: Optimal O(n log h) algorithm combining multiple techniques
+\end{enumerate}
+
+\subsection{User Interface Features}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Interactive Point Input}: Click-to-add point functionality with mouse interaction
+    \item \textbf{Random Point Generation}: Automated generation of random point sets for testing
+    \item \textbf{Algorithm Selection}: Dropdown menu for choosing different convex hull algorithms
+    \item \textbf{Animation Controls}: Play, pause, reset, and step-through animation capabilities
+    \item \textbf{Speed Control}: Adjustable animation speed for detailed observation
+    \item \textbf{Zoom and Pan}: Enhanced viewing capabilities for detailed analysis
+    \item \textbf{Theme Support}: Multiple UI themes using FlatLaf library (Dark, Light, Dracula, etc.)
+\end{itemize}
+
+\subsection{Visualization Capabilities}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Real-time Animation}: Step-by-step visualization of algorithm execution
+    \item \textbf{Color-coded Elements}: Different colors for input points, hull points, and construction lines
+    \item \textbf{Progress Indicators}: Visual feedback on algorithm completion status
+    \item \textbf{Geometric Highlighting}: Emphasis on current algorithm operations and decisions
+    \item \textbf{Anti-aliased Graphics}: High-quality rendering for smooth visual experience
+\end{itemize}
+
+\subsection{Analysis Features}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Performance Metrics}: Real-time display of algorithm execution statistics
+    \item \textbf{Comparison Counter}: Track and display the number of geometric comparisons
+    \item \textbf{Time Complexity Analysis}: Theoretical and practical complexity demonstration
+    \item \textbf{Algorithm Comparison}: Side-by-side performance analysis capabilities
+\end{itemize}
+
+\section{System Architecture}
+
+The Convex Hull Algorithm Visualizer follows a modular, object-oriented architecture designed for maintainability, extensibility, and clear separation of concerns.
+
+\subsection{Architecture Overview}
+The system is organized into three primary modules:
+
+\begin{figure}[H]
+\centering
+\begin{verbatim}
+Convex Hull Algorithms Visualizer/
+├── algorithms/          # Algorithm implementations
+├── setup/              # Core utilities and data structures
+└── userinterface/      # GUI components and visualization
+\end{verbatim}
+\caption{Project Structure Overview}
+\end{figure}
+
+\subsection{Module Descriptions}
+
+\subsubsection{Algorithms Module}
+This module contains the implementation of all convex hull algorithms:
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{ConvexHullAlgorithm.java}: Abstract base class defining the common interface
+    \item \textbf{GrahamScan.java}: Implementation of Graham's Scan algorithm
+    \item \textbf{JarvisMarch.java}: Gift wrapping algorithm implementation
+    \item \textbf{MonotoneChain.java}: Andrew's monotone chain algorithm
+    \item \textbf{QuickHull.java}: Divide-and-conquer QuickHull implementation
+    \item \textbf{ChanAlgorithm.java}: Optimal Chan's algorithm implementation
+\end{itemize}
+
+\subsubsection{Setup Module}
+Core utilities and data structures supporting the algorithms:
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Point.java}: Fundamental point class with geometric operations
+    \item \textbf{PointStack.java}: Specialized stack for point operations
+    \item \textbf{HeapSort.java}: Efficient sorting implementation for point ordering
+    \item \textbf{Line.java}: Line segment representation and operations
+    \item \textbf{Stack.java}: Generic stack implementation
+    \item \textbf{Median.java}: Median finding utilities for optimization
+    \item \textbf{PointCircular.java}: Circular point list for specific algorithms
+\end{itemize}
+
+\subsubsection{User Interface Module}
+GUI components and visualization logic:
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Visualizer.java}: Main application window and control logic
+    \item \textbf{AnimationArea.java}: Canvas component for algorithm visualization
+\end{itemize}
+
+\subsection{Design Patterns Implemented}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Strategy Pattern}: Algorithm selection through abstract base class
+    \item \textbf{Observer Pattern}: Event-driven GUI updates and animation control
+    \item \textbf{Template Method}: Standardized algorithm execution framework
+    \item \textbf{Factory Pattern}: Dynamic algorithm instantiation based on user selection
+\end{itemize}
+
+\subsection{Technology Stack}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Java SE}: Core programming language for cross-platform compatibility
+    \item \textbf{Java Swing}: GUI framework for desktop application development
+    \item \textbf{FlatLaf}: Modern look-and-feel library for enhanced UI aesthetics
+    \item \textbf{Java AWT}: Low-level graphics and event handling
+    \item \textbf{BufferedImage}: Double-buffered graphics for smooth animation
+\end{itemize}
+
+\section{Project Approach}
+
+The development of the Convex Hull Algorithm Simulator followed a systematic, phase-based approach designed to ensure thorough implementation and testing of all components.
+
+\subsection{Development Methodology}
+The project employed an iterative development approach with clear phases:
+
+\subsubsection{Phase 1: Requirements Analysis and Research (Weeks 1-2)}
+\begin{itemize}[leftmargin=0.5in]
+    \item Comprehensive study of convex hull algorithms and their mathematical foundations
+    \item Analysis of existing visualization tools to identify improvement opportunities
+    \item Definition of functional and non-functional requirements
+    \item Technology stack selection and architecture planning
+\end{itemize}
+
+\subsubsection{Phase 2: Core Algorithm Implementation (Weeks 3-5)}
+\begin{itemize}[leftmargin=0.5in]
+    \item Implementation of fundamental data structures (Point, Stack, etc.)
+    \item Development of sorting and utility functions
+    \item Sequential implementation of convex hull algorithms
+    \item Unit testing and algorithm verification with known datasets
+\end{itemize}
+
+\subsubsection{Phase 3: User Interface Development (Weeks 6-7)}
+\begin{itemize}[leftmargin=0.5in]
+    \item Design and implementation of the main application window
+    \item Development of the animation canvas with double-buffered graphics
+    \item Integration of algorithm implementations with the visualization system
+    \item Implementation of user interaction features (mouse input, controls)
+\end{itemize}
+
+\subsubsection{Phase 4: Testing and Optimization (Weeks 8-9)}
+\begin{itemize}[leftmargin=0.5in]
+    \item Comprehensive testing with various datasets and edge cases
+    \item Performance optimization and animation smoothness improvements
+    \item Bug fixing and stability enhancements
+    \item User experience testing and interface refinements
+\end{itemize}
+
+\subsubsection{Phase 5: Documentation and Finalization (Week 10)}
+\begin{itemize}[leftmargin=0.5in]
+    \item Code documentation and commenting
+    \item User manual creation
+    \item Final testing and quality assurance
+    \item Project packaging and deployment preparation
+\end{itemize}
+
+\subsection{Implementation Challenges and Solutions}
+
+\subsubsection{Algorithm Complexity Management}
+\textbf{Challenge}: Implementing multiple complex algorithms while maintaining code clarity and performance.
+\textbf{Solution}: Adopted abstract base class pattern with standardized interfaces, enabling consistent implementation across all algorithms.
+
+\subsubsection{Animation Synchronization}
+\textbf{Challenge}: Coordinating real-time visualization with algorithm execution without blocking the user interface.
+\textbf{Solution}: Implemented step-based algorithm execution with state management, allowing controlled progression through algorithm steps.
+
+\subsubsection{Performance Optimization}
+\textbf{Challenge}: Ensuring smooth animation performance while handling large datasets.
+\textbf{Solution}: Utilized double-buffered graphics and optimized rendering techniques to maintain responsive user interface.
+
+\subsection{Quality Assurance Approach}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Algorithm Verification}: Tested each algorithm against known convex hull results
+    \item \textbf{Performance Testing}: Evaluated algorithms with datasets of varying sizes
+    \item \textbf{User Interface Testing}: Conducted usability testing with potential users
+    \item \textbf{Cross-platform Compatibility}: Tested on multiple operating systems
+\end{itemize}
+
+\section{Advantages}
+
+The Convex Hull Algorithm Simulator offers significant advantages over traditional learning methods and existing tools:
+
+\subsection{Educational Advantages}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Visual Learning Enhancement}: Transforms abstract mathematical concepts into intuitive visual representations, significantly improving comprehension
+    \item \textbf{Step-by-Step Understanding}: Allows learners to observe each algorithmic decision and geometric operation in detail
+    \item \textbf{Interactive Exploration}: Enables hands-on experimentation with different point configurations and algorithm behaviors
+    \item \textbf{Comparative Analysis}: Provides direct comparison between algorithms, highlighting their relative strengths and weaknesses
+    \item \textbf{Self-Paced Learning}: Users can control animation speed and progression according to their learning needs
+\end{itemize}
+
+\subsection{Technical Advantages}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Cross-Platform Compatibility}: Java-based implementation ensures operation across Windows, macOS, and Linux systems
+    \item \textbf{Modular Architecture}: Clean separation of concerns enables easy maintenance and extension
+    \item \textbf{Performance Optimization}: Efficient algorithm implementations with optimal time and space complexity
+    \item \textbf{Modern User Interface}: Contemporary design using FlatLaf themes for enhanced user experience
+    \item \textbf{Scalable Design}: Architecture supports easy addition of new algorithms and features
+\end{itemize}
+
+\subsection{Practical Advantages}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Real-World Application}: Directly applicable to fields requiring geometric computation
+    \item \textbf{Research Tool}: Useful for algorithm comparison and performance analysis
+    \item \textbf{Teaching Aid}: Valuable resource for instructors teaching computational geometry
+    \item \textbf{Professional Development}: Enhances understanding of algorithm design and implementation
+    \item \textbf{Open Source Potential}: Codebase can be extended and customized for specific needs
+\end{itemize}
+
+\subsection{Competitive Advantages}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Comprehensive Algorithm Coverage}: Implements multiple algorithms in a single, unified platform
+    \item \textbf{Advanced Visualization}: Superior graphics quality with anti-aliasing and smooth animations
+    \item \textbf{User-Friendly Design}: Intuitive interface requiring minimal learning curve
+    \item \textbf{Performance Metrics}: Built-in analysis tools for algorithm comparison and evaluation
+    \item \textbf{Customizable Experience}: Multiple themes and adjustable settings for personalized usage
+\end{itemize}
+
+\section{Future Updates}
+
+The Convex Hull Algorithm Simulator provides a solid foundation for numerous enhancements and extensions:
+
+\subsection{Algorithm Enhancements}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{3D Convex Hull Algorithms}: Extension to three-dimensional space with algorithms like QuickHull 3D and Incremental Construction
+    \item \textbf{Approximate Algorithms}: Implementation of approximation algorithms for very large datasets
+    \item \textbf{Parallel Algorithms}: Multi-threaded implementations for improved performance on large datasets
+    \item \textbf{Online Algorithms}: Dynamic convex hull maintenance as points are added or removed
+    \item \textbf{Specialized Variants}: Algorithms optimized for specific point distributions or constraints
+\end{itemize}
+
+\subsection{User Interface Improvements}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Advanced Controls}: More sophisticated animation controls including backward stepping and bookmarking
+    \item \textbf{Multiple Viewport Support}: Side-by-side algorithm comparison with synchronized execution
+    \item \textbf{Customizable Visualization}: User-defined colors, point sizes, and animation styles
+    \item \textbf{Touch Interface Support}: Adaptation for tablet and touch-screen devices
+    \item \textbf{Accessibility Features}: Support for screen readers and keyboard navigation
+\end{itemize}
+
+\subsection{Analysis and Reporting Features}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Performance Profiling}: Detailed timing analysis and memory usage tracking
+    \item \textbf{Statistical Analysis}: Comprehensive algorithm performance statistics over multiple runs
+    \item \textbf{Export Capabilities}: Generation of reports, images, and animation sequences
+    \item \textbf{Benchmark Suite}: Standardized test cases for algorithm evaluation
+    \item \textbf{Complexity Visualization}: Graphical representation of time and space complexity
+\end{itemize}
+
+\subsection{Educational Enhancements}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Tutorial Integration}: Built-in guided tutorials for each algorithm
+    \item \textbf{Exercise Generation}: Automatic problem generation for practice
+    \item \textbf{Learning Path Tracking}: Progress monitoring and adaptive learning features
+    \item \textbf{Collaborative Features}: Multi-user support for classroom environments
+    \item \textbf{Assessment Tools}: Quiz and evaluation capabilities for educational use
+\end{itemize}
+
+\subsection{Platform Extensions}
+\begin{itemize}[leftmargin=0.5in]
+    \item \textbf{Web Application}: Browser-based version using WebGL or Canvas API
+    \item \textbf{Mobile Applications}: Native iOS and Android implementations
+    \item \textbf{Virtual Reality}: Immersive 3D algorithm visualization in VR environments
+    \item \textbf{Cloud Integration}: Online collaboration and cloud-based computation
+    \item \textbf{API Development}: RESTful API for integration with other educational platforms
+\end{itemize}
+
+\section{Conclusion}
+
+The development of the Convex Hull Algorithm Simulator represents a successful integration of computational geometry theory with practical educational technology. This project successfully bridges the critical gap between abstract mathematical concepts and their practical understanding through interactive visualization.
+
+The completed application stands as a testament to the effectiveness of visual learning approaches in complex algorithmic domains. By transforming static textbook concepts into dynamic, interactive experiences, the visualizer demonstrates how modern software development can directly enhance educational outcomes in computer science education.
+
+From a personal development perspective, this project provided invaluable hands-on experience with the complete software development lifecycle - from initial concept through final implementation. The challenges encountered during development, particularly in animation synchronization and performance optimization, resulted in deeper understanding of both algorithmic complexity and user interface design principles.
+
+The project's modular architecture and comprehensive implementation create a solid foundation for future educational tools in computational geometry. The successful completion within the planned timeline demonstrates effective project management and iterative development practices that are directly applicable to professional software development environments.
+
+Most importantly, this visualizer addresses a real educational need in the computer science curriculum. The gap between theoretical algorithm study and practical understanding is a persistent challenge in computational geometry education. By providing an interactive platform where students can experiment with and observe algorithm behavior in real-time, this tool contributes meaningfully to modern pedagogical approaches that emphasize active learning and visual comprehension.
+
+The Convex Hull Algorithm Simulator ultimately serves as both a practical educational resource and a demonstration of how thoughtful software design can transform the learning experience in technical disciplines.
+
+\end{document}
